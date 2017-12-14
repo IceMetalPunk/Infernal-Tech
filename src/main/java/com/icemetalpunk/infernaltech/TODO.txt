@@ -1,0 +1,4 @@
+TODO:
+1. Hellfire Smeltery assets
+2. Lang file
+3. More infernal tech!

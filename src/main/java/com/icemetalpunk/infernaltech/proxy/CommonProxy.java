@@ -3,6 +3,8 @@ package com.icemetalpunk.infernaltech.proxy;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.icemetalpunk.infernaltech.InfernalTech;
+import com.icemetalpunk.infernaltech.gui.InfernalTechGuiHandler;
 import com.icemetalpunk.infernaltech.registries.BlockRegistry;
 import com.icemetalpunk.infernaltech.registries.ItemRegistry;
 import com.icemetalpunk.infernaltech.tile.TileEntityHellfireSmeltery;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
@@ -34,7 +37,7 @@ public class CommonProxy {
 	}
 
 	public void init(FMLInitializationEvent ev) {
-
+		NetworkRegistry.INSTANCE.registerGuiHandler(InfernalTech.instance, new InfernalTechGuiHandler());
 	}
 
 	public void postInit(FMLPostInitializationEvent ev) {

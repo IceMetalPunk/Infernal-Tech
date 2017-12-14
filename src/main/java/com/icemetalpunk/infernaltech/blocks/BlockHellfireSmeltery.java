@@ -2,12 +2,14 @@ package com.icemetalpunk.infernaltech.blocks;
 
 import java.util.Random;
 
+import com.icemetalpunk.infernaltech.InfernalTech;
+import com.icemetalpunk.infernaltech.registries.GuiRegistry;
 import com.icemetalpunk.infernaltech.tile.TileEntityHellfireSmeltery;
 
-import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -18,7 +20,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -37,21 +38,36 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 	public static final float[] levels = { 0.75f, 0.5f, 0.25f, 0.10f };
 	public int level = 0;
 
-	public static final PropertyDirection FACING = BlockFurnace.FACING;
-	private final boolean isBurning;
+	public static final PropertyDirection FACING = PropertyDirection.create("facing");
+	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 	private static boolean keepInventory;
 
-	public BlockHellfireSmeltery(String mod, String name, CreativeTabs tab, int level, boolean isBurning) {
+	public BlockHellfireSmeltery(String mod, String name, CreativeTabs tab, int level) {
 		super(mod, name, Material.ROCK, tab);
 		this.setHardness(1.0f);
 		this.level = level;
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		this.isBurning = isBurning;
+		this.setDefaultState(
+				this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityHellfireSmeltery(levels[this.level]);
+	}
+
+	public static void setState(boolean active, World worldIn, BlockPos pos) {
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		keepInventory = true;
+
+		worldIn.setBlockState(pos, iblockstate.withProperty(ACTIVE, active));
+
+		keepInventory = false;
+
+		if (tileentity != null) {
+			tileentity.validate();
+			worldIn.setTileEntity(pos, tileentity);
+		}
 	}
 
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
@@ -83,7 +99,7 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("incomplete-switch")
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (this.isBurning) {
+		if (stateIn.getValue(ACTIVE)) {
 			EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
 			double d0 = (double) pos.getX() + 0.5D;
 			double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
@@ -127,8 +143,11 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
 			if (tileentity instanceof TileEntityHellfireSmeltery) {
-				playerIn.displayGUIChest((TileEntityHellfireSmeltery) tileentity);
-				playerIn.addStat(StatList.FURNACE_INTERACTION);
+				// playerIn.displayGUIChest((TileEntityHellfireSmeltery)
+				// tileentity);
+				// playerIn.addStat(StatList.FURNACE_INTERACTION);
+				playerIn.openGui(InfernalTech.instance, GuiRegistry.GUI_HELLFIRE_SMELTERY, worldIn, pos.getX(),
+						pos.getY(), pos.getZ());
 			}
 
 			return true;
@@ -201,7 +220,11 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 	}
 
 	public int getMetaFromState(IBlockState state) {
-		return ((EnumFacing) state.getValue(FACING)).getIndex();
+		int val = ((EnumFacing) state.getValue(FACING)).getIndex();
+		if (state.getValue(ACTIVE)) {
+			val += 6;
+		}
+		return val;
 	}
 
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
@@ -213,7 +236,7 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 	}
 
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING });
+		return new BlockStateContainer(this, new IProperty[] { FACING, ACTIVE });
 	}
 
 }

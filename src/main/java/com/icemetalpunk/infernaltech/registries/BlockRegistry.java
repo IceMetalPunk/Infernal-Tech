@@ -19,7 +19,7 @@ public class BlockRegistry {
 
 	static {
 		registry.put("hellfire_smeltery",
-				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery", InfernalTech.tab, 0, false));
+				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery", InfernalTech.tab, 3));
 	}
 
 	public BlockRegistry() {
