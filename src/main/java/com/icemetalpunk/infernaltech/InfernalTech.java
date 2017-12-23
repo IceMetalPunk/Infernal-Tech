@@ -16,8 +16,6 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = InfernalTech.MODID, version = InfernalTech.VERSION)
@@ -45,18 +43,7 @@ public class InfernalTech {
 	public static ItemRegistry items = new ItemRegistry();
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		proxy.preInit(event);
-	}
-
-	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		proxy.init(event);
 		NetworkRegistry.INSTANCE.registerGuiHandler(InfernalTech.instance, new InfernalTechGuiHandler());
-	}
-
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		proxy.postInit(event);
 	}
 }
