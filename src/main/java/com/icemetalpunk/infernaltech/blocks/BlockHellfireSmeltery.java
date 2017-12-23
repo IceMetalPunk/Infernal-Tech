@@ -3,6 +3,7 @@ package com.icemetalpunk.infernaltech.blocks;
 import java.util.Random;
 
 import com.icemetalpunk.infernaltech.InfernalTech;
+import com.icemetalpunk.infernaltech.interfaces.ITileRegistrar;
 import com.icemetalpunk.infernaltech.registries.GuiRegistry;
 import com.icemetalpunk.infernaltech.tile.TileEntityHellfireSmeltery;
 
@@ -33,7 +34,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProvider {
+public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProvider, ITileRegistrar {
 
 	public static final float[] levels = { 0.75f, 0.5f, 0.25f, 0.10f };
 
@@ -241,6 +242,16 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, new IProperty[] { FACING, ACTIVE });
+	}
+
+	@Override
+	public Class<? extends TileEntity> getTEClass() {
+		return TileEntityHellfireSmeltery.class;
+	}
+
+	@Override
+	public String getTEName() {
+		return "hellfire_smeltery";
 	}
 
 }

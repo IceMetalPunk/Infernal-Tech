@@ -1,5 +1,5 @@
 package com.icemetalpunk.infernaltech.proxy;
 
-public class ServerProxy extends CommonProxy {
+public class ServerProxy extends Proxy {
 
 }

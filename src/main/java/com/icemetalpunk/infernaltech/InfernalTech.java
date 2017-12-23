@@ -2,7 +2,10 @@
 
 package com.icemetalpunk.infernaltech;
 
-import com.icemetalpunk.infernaltech.proxy.CommonProxy;
+import com.icemetalpunk.infernaltech.gui.InfernalTechGuiHandler;
+import com.icemetalpunk.infernaltech.proxy.Proxy;
+import com.icemetalpunk.infernaltech.registries.BlockRegistry;
+import com.icemetalpunk.infernaltech.registries.ItemRegistry;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -15,6 +18,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = InfernalTech.MODID, version = InfernalTech.VERSION)
 public class InfernalTech {
@@ -25,7 +29,7 @@ public class InfernalTech {
 	public static InfernalTech instance = new InfernalTech();
 
 	@SidedProxy(clientSide = "com.icemetalpunk.infernaltech.proxy.ClientProxy", serverSide = "com.icemetalpunk.infernaltech.proxy.ServerProxy")
-	public static CommonProxy proxy;
+	public static Proxy proxy;
 
 	public static CreativeTabs tab = new CreativeTabs("infernaltech") {
 
@@ -37,6 +41,9 @@ public class InfernalTech {
 
 	};
 
+	public static BlockRegistry blocks = new BlockRegistry();
+	public static ItemRegistry items = new ItemRegistry();
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.preInit(event);
@@ -45,6 +52,7 @@ public class InfernalTech {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		proxy.init(event);
+		NetworkRegistry.INSTANCE.registerGuiHandler(InfernalTech.instance, new InfernalTechGuiHandler());
 	}
 
 	@EventHandler

@@ -5,13 +5,16 @@ import java.util.HashMap;
 import com.icemetalpunk.infernaltech.InfernalTech;
 import com.icemetalpunk.infernaltech.blocks.BasicBlock;
 import com.icemetalpunk.infernaltech.blocks.BlockHellfireSmeltery;
+import com.icemetalpunk.infernaltech.interfaces.ITileRegistrar;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlockRegistry {
@@ -41,6 +44,16 @@ public class BlockRegistry {
 		IForgeRegistry<Block> reg = ev.getRegistry();
 		for (BasicBlock block : registry.values()) {
 			reg.register(block);
+
+			if (block instanceof ITileRegistrar) {
+				ITileRegistrar registrar = (ITileRegistrar) block;
+				Class<? extends TileEntity> theClass = registrar.getTEClass();
+				String theName = registrar.getTEName();
+				if (TileEntity.getKey(theClass) == null) {
+					GameRegistry.registerTileEntity(theClass, theName);
+				}
+			}
+
 		}
 	}
 
@@ -50,14 +63,9 @@ public class BlockRegistry {
 		}
 	}
 
-	public void register(IForgeRegistry<Block> reg) {
-		for (BasicBlock block : this.registry.values()) {
-			System.out.println("Registering the block " + block + " from the proxy " + InfernalTech.proxy);
-			reg.register(block);
-		}
-	}
-
-	public void registerItemBlocks(IForgeRegistry<Item> reg) {
+	@SubscribeEvent
+	public void registerItemBlocks(RegistryEvent.Register<Item> ev) {
+		IForgeRegistry<Item> reg = ev.getRegistry();
 		for (BasicBlock block : this.registry.values()) {
 			Item itemBlock = block.getItemBlock();
 			if (itemBlock != null) {

@@ -9,6 +9,8 @@ import com.icemetalpunk.infernaltech.items.BasicItem;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemRegistry {
@@ -28,7 +30,9 @@ public class ItemRegistry {
 		return registry.get(name);
 	}
 
-	public void register(IForgeRegistry<Item> reg) {
+	@SubscribeEvent
+	public void register(RegistryEvent.Register<Item> ev) {
+		IForgeRegistry<Item> reg = ev.getRegistry();
 		for (BasicItem item : this.registry.values()) {
 			reg.register(item);
 		}
