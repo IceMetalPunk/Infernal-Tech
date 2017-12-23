@@ -1,5 +1,7 @@
 package com.icemetalpunk.infernaltech.tile;
 
+import java.util.HashMap;
+
 import com.icemetalpunk.infernaltech.InfernalTech;
 import com.icemetalpunk.infernaltech.blocks.BlockHellfireSmeltery;
 
@@ -54,15 +56,24 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 	protected int cookTime;
 	protected int totalCookTime;
 	protected String furnaceCustomName;
-	protected float speedMultiplier = 1.0f;
+	protected int tier = 1;
 
-	public TileEntityHellfireSmeltery(float mult) {
+	public static HashMap<Block, Float> modifierMap = new HashMap<>();
+
+	static {
+		modifierMap.put(Blocks.LAVA, 0.5f);
+		modifierMap.put(Blocks.FLOWING_LAVA, 0.5f);
+		modifierMap.put(Blocks.FIRE, 0.75f);
+		modifierMap.put(Blocks.MAGMA, 0.80f);
+	}
+
+	public TileEntityHellfireSmeltery(int tier) {
 		super();
-		this.speedMultiplier = mult;
+		this.tier = tier;
 	}
 
 	public TileEntityHellfireSmeltery() {
-		this(1.0f);
+		this(1);
 	}
 
 	/**
@@ -129,7 +140,8 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 	 * Get the name of this object. For players this returns their username
 	 */
 	public String getName() {
-		return this.hasCustomName() ? this.furnaceCustomName : "container." + InfernalTech.MODID + ".hellfire_smeltery";
+		return this.hasCustomName() ? this.furnaceCustomName
+				: "container." + InfernalTech.MODID + ".hellfire_smeltery.tier_" + this.tier;
 	}
 
 	/**
@@ -151,12 +163,12 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		this.furnaceItemStacks = NonNullList.<ItemStack> withSize(this.getSizeInventory(), ItemStack.EMPTY);
+		this.tier = compound.getInteger("Tier");
 		ItemStackHelper.loadAllItems(compound, this.furnaceItemStacks);
 		this.furnaceBurnTime = compound.getInteger("BurnTime");
 		this.cookTime = compound.getInteger("CookTime");
 		this.totalCookTime = compound.getInteger("CookTimeTotal");
 		this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks.get(1));
-		this.speedMultiplier = compound.getFloat("Multiplier");
 
 		if (compound.hasKey("CustomName", 8)) {
 			this.furnaceCustomName = compound.getString("CustomName");
@@ -168,8 +180,8 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 		compound.setInteger("BurnTime", (short) this.furnaceBurnTime);
 		compound.setInteger("CookTime", (short) this.cookTime);
 		compound.setInteger("CookTimeTotal", (short) this.totalCookTime);
+		compound.setInteger("Tier", this.tier);
 		ItemStackHelper.saveAllItems(compound, this.furnaceItemStacks);
-		compound.setFloat("Multiplier", this.speedMultiplier);
 
 		if (this.hasCustomName()) {
 			compound.setString("CustomName", this.furnaceCustomName);
@@ -260,7 +272,22 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 	}
 
 	public int getCookTime(ItemStack stack) {
-		return Math.max(1, MathHelper.floor(200 * this.speedMultiplier));
+		float mult = 1.0f;
+		boolean isNether = this.world.provider.isNether();
+		Block blockUnder = this.world.getBlockState(this.pos.down()).getBlock();
+
+		if (this.tier == 1 && isNether) {
+			mult *= 0.5f;
+		} else if (this.tier > 1) {
+			if (isNether) {
+				mult *= 0.25f;
+			}
+			if (modifierMap.containsKey(blockUnder)) {
+				mult *= modifierMap.get(blockUnder);
+			}
+		}
+
+		return Math.max(1, MathHelper.floor(200 * mult));
 	}
 
 	/**

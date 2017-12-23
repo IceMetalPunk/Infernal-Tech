@@ -36,23 +36,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProvider {
 
 	public static final float[] levels = { 0.75f, 0.5f, 0.25f, 0.10f };
-	public int level = 0;
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 	private static boolean keepInventory;
+	private int tier = 1;
 
-	public BlockHellfireSmeltery(String mod, String name, CreativeTabs tab, int level) {
+	public BlockHellfireSmeltery(String mod, String name, CreativeTabs tab, int tier) {
 		super(mod, name, Material.ROCK, tab);
 		this.setHardness(1.0f);
-		this.level = level;
 		this.setDefaultState(
 				this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
+		this.tier = tier;
+	}
+
+	public BlockHellfireSmeltery(String mod, String name, CreativeTabs tab) {
+		this(mod, name, tab, 1);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityHellfireSmeltery(levels[this.level]);
+		return new TileEntityHellfireSmeltery(this.tier);
 	}
 
 	public static void setState(boolean active, World worldIn, BlockPos pos) {

@@ -18,8 +18,10 @@ public class BlockRegistry {
 	private static HashMap<String, BasicBlock> registry = new HashMap<>();
 
 	static {
-		registry.put("hellfire_smeltery",
-				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery", InfernalTech.tab, 3));
+		registry.put("hellfire_smeltery_tier_1",
+				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_1", InfernalTech.tab, 1));
+		registry.put("hellfire_smeltery_tier_2",
+				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_2", InfernalTech.tab, 2));
 	}
 
 	public BlockRegistry() {
@@ -50,6 +52,7 @@ public class BlockRegistry {
 
 	public void register(IForgeRegistry<Block> reg) {
 		for (BasicBlock block : this.registry.values()) {
+			System.out.println("Registering the block " + block + " from the proxy " + InfernalTech.proxy);
 			reg.register(block);
 		}
 	}
