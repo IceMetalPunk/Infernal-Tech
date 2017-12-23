@@ -1,0 +1,10 @@
+itemGroup.infernaltech=InfernalTech
+
+container.infernaltech.hellfire_smeltery.tier_1=Basic Hellfire Smeltery
+container.infernaltech.hellfire_smeltery.tier_2=Adaptive Hellfire Smeltery
+
+item.infernaltech.hellfire_smeltery_tier_1.name=Basic Hellfire Smeltery
+item.infernaltech.hellfire_smeltery_tier_2.name=Adaptive Hellfire Smeltery
+
+tile.infernaltech.hellfire_smeltery_tier_1.name=Basic Hellfire Smeltery
+tile.infernaltech.hellfire_smeltery_tier_2.name=Adaptive Hellfire Smeltery
