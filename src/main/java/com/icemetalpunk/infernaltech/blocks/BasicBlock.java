@@ -31,6 +31,7 @@ public class BasicBlock extends Block implements IModeledObject {
 	public BasicBlock(String mod, String name, Material materialIn, CreativeTabs tab) {
 		this(mod, name, materialIn);
 		this.itemBlock.setCreativeTab(tab);
+		this.setCreativeTab(tab);
 	}
 
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
