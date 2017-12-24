@@ -286,6 +286,9 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 				mult *= modifierMap.get(blockUnder);
 			}
 		}
+		if (tier >= 3) {
+			mult *= 0.5f;
+		}
 
 		return Math.max(1, MathHelper.floor(200 * mult));
 	}

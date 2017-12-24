@@ -1,12 +1,16 @@
 package com.icemetalpunk.infernaltech.blocks;
 
+import java.util.List;
 import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import com.icemetalpunk.infernaltech.InfernalTech;
 import com.icemetalpunk.infernaltech.interfaces.ITileRegistrar;
 import com.icemetalpunk.infernaltech.registries.GuiRegistry;
 import com.icemetalpunk.infernaltech.tile.TileEntityHellfireSmeltery;
 
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,6 +18,8 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,7 +44,7 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 
 	public static final float[] levels = { 0.75f, 0.5f, 0.25f, 0.10f };
 
-	public static final PropertyDirection FACING = PropertyDirection.create("facing");
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 	private static boolean keepInventory;
 	private int tier = 1;
@@ -58,6 +64,11 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityHellfireSmeltery(this.tier);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+		tooltip.add(I18n.format(this.getUnlocalizedName() + ".tooltip", new Object[0]));
 	}
 
 	public static void setState(boolean active, World worldIn, BlockPos pos) {

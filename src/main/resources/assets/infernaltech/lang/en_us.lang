@@ -2,9 +2,16 @@ itemGroup.infernaltech=InfernalTech
 
 container.infernaltech.hellfire_smeltery.tier_1=Basic Hellfire Smeltery
 container.infernaltech.hellfire_smeltery.tier_2=Adaptive Hellfire Smeltery
+container.infernaltech.hellfire_smeltery.tier_3=Radiant Hellfire Smeltery
 
 item.infernaltech.hellfire_smeltery_tier_1.name=Basic Hellfire Smeltery
 item.infernaltech.hellfire_smeltery_tier_2.name=Adaptive Hellfire Smeltery
+item.infernaltech.hellfire_smeltery_tier_3.name=Radiant Hellfire Smeltery
 
 tile.infernaltech.hellfire_smeltery_tier_1.name=Basic Hellfire Smeltery
 tile.infernaltech.hellfire_smeltery_tier_2.name=Adaptive Hellfire Smeltery
+tile.infernaltech.hellfire_smeltery_tier_3.name=Radiant Hellfire Smeltery
+
+tile.infernaltech.hellfire_smeltery_tier_1.tooltip=Uses heat from the Nether to smelt items faster. When not in the Nether, it's just a normal furnace.
+tile.infernaltech.hellfire_smeltery_tier_2.tooltip=Combines heat from the Nether and heat from blocks below it to smelt even faster. It can be used outside the Nether and will still draw heat from underlying blocks.
+tile.infernaltech.hellfire_smeltery_tier_3.tooltip=Produces its own excess heat to speed up all smelting; can still use Nether heat and underlying block heat like the Adaptive version.

@@ -25,6 +25,8 @@ public class BlockRegistry {
 				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_1", InfernalTech.tab, 1));
 		registry.put("hellfire_smeltery_tier_2",
 				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_2", InfernalTech.tab, 2));
+		registry.put("hellfire_smeltery_tier_3",
+				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_3", InfernalTech.tab, 3));
 	}
 
 	public BlockRegistry() {
