@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:hellfire_smeltery_tier_3",
+  "pattern": [
+    "RTR",
+	"RSR",
+	"RNR"
+  ],
+  "key": {
+	"R": {
+		"item": "minecraft:red_nether_brick",
+		"data": 0
+	},
+	"T": {
+		"item": "minecraft:tnt",
+		"data": 0
+	},
+	"N": {
+		"item": "minecraft:nether_star",
+		"data": 0
+	},
+	"S": {
+		"item": "infernaltech:hellfire_smeltery_tier_2",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:hellfire_smeltery_tier_3",
+	"data": 0
+  }
+}

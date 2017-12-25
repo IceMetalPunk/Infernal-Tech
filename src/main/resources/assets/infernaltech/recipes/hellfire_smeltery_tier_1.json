@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:hellfire_smeltery_tier_1",
+  "pattern": [
+    "NNN",
+	"NFN",
+	"NNN"
+  ],
+  "key": {
+	"N": {
+		"item": "minecraft:nether_brick",
+		"data": 0
+	},
+	"F": {
+		"item": "minecraft:furnace",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:hellfire_smeltery_tier_1",
+	"data": 0
+  }
+}

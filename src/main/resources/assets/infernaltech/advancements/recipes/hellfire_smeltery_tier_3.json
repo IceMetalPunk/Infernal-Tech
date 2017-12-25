@@ -1,0 +1,43 @@
+{
+  "parent": "infernaltech:recipes/root",
+  "rewards": {
+    "recipes": [
+      "infernaltech:hellfire_smeltery_tier_3"
+    ]
+  },
+  "criteria": {
+    "has_nether_star": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:nether_star",
+            "data": 0
+          }
+        ]
+      }
+    },
+	"has_prev_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "infernaltech:hellfire_smeltery_tier_2"
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "infernaltech:hellfire_smeltery_tier_3"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nether_star",
+      "has_the_recipe"
+    ],
+	[
+		"has_the_recipe",
+		"has_prev_recipe"
+	]
+  ]
+}

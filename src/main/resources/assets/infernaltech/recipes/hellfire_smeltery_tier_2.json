@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:hellfire_smeltery_tier_2",
+  "pattern": [
+    "MLM",
+	"CSC",
+	"MLM"
+  ],
+  "key": {
+	"M": {
+		"item": "minecraft:magma",
+		"data": 0
+	},
+	"L": {
+		"item": "minecraft:lava_bucket",
+		"data": 0
+	},
+	"C": {
+		"item": "minecraft:magma_cream",
+		"data": 0
+	},
+	"S": {
+		"item": "infernaltech:hellfire_smeltery_tier_1",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:hellfire_smeltery_tier_2",
+	"data": 0
+  }
+}

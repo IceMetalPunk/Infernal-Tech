@@ -1,0 +1,33 @@
+{
+  "parent": "infernaltech:recipes/root",
+  "rewards": {
+    "recipes": [
+      "infernaltech:hellfire_smeltery_tier_1"
+    ]
+  },
+  "criteria": {
+    "has_netherbrick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:nether_brick",
+            "data": 0
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "infernaltech:hellfire_smeltery_tier_1"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_netherbrick",
+      "has_the_recipe"
+    ]
+  ]
+}
