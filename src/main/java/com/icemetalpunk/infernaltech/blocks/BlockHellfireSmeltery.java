@@ -52,6 +52,12 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 	public BlockHellfireSmeltery(String mod, String name, CreativeTabs tab, int tier) {
 		super(mod, name, Material.ROCK, tab);
 		this.setHardness(1.0f);
+		float ftier = tier;
+		float flight = 0.05f * ftier + 0.05f * ftier * ftier - 0.1f;
+		this.setLightLevel(flight); // t1=0,
+									// t2=0.2,
+									// t3=0.5
+		System.out.println("Set tier " + tier + " light level to " + flight);
 		this.setDefaultState(
 				this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
 		this.tier = tier;
