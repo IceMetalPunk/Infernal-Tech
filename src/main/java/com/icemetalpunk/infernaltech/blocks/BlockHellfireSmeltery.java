@@ -53,8 +53,8 @@ public class BlockHellfireSmeltery extends BasicBlock implements ITileEntityProv
 		super(mod, name, Material.ROCK, tab);
 		this.setHardness(1.0f);
 		float ftier = tier;
-		float flight = 0.05f * ftier + 0.05f * ftier * ftier - 0.1f;
-		this.setLightLevel(flight); // t1=0, t2=0.2, t3=0.5
+		float flight = 0.5f * tier - 0.5f;
+		this.setLightLevel(flight); // t1=0, t2=0.5, t3=1.0
 		this.setDefaultState(
 				this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, false));
 		this.tier = tier;

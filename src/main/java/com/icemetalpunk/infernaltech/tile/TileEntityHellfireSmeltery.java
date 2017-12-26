@@ -478,7 +478,7 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 	}
 
 	public String getGuiID() {
-		return "minecraft:furnace";
+		return InfernalTech.MODID + ":hellfire_smeltery";
 	}
 
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
