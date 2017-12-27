@@ -7,6 +7,7 @@ import com.icemetalpunk.infernaltech.interfaces.ISmeltingOutput;
 import com.icemetalpunk.infernaltech.util.SmeltingRecipe;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,7 +25,7 @@ public class BlockSpiritGlass extends BasicBlock implements ISmeltingOutput {
 
 	public BlockSpiritGlass(String mod, String name, CreativeTabs tab) {
 		super(mod, name, Material.GLASS, tab);
-		this.setHardness(0.3F);
+		this.setSoundType(SoundType.GLASS).setHardness(0.3F);
 	}
 
 	/**
