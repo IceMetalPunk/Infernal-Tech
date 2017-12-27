@@ -1,11 +1,14 @@
 package com.icemetalpunk.infernaltech.registries;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.icemetalpunk.infernaltech.interfaces.ISmeltingOutput;
 import com.icemetalpunk.infernaltech.items.BasicItem;
+import com.icemetalpunk.infernaltech.util.SmeltingRecipe;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -35,6 +38,16 @@ public class ItemRegistry {
 		IForgeRegistry<Item> reg = ev.getRegistry();
 		for (BasicItem item : this.registry.values()) {
 			reg.register(item);
+
+			// Register smelting recipes
+			if (item instanceof ISmeltingOutput) {
+				ISmeltingOutput smelt = (ISmeltingOutput) item;
+				List<SmeltingRecipe> recipes = smelt.getSmeltingRecipes();
+				for (SmeltingRecipe recipe : recipes) {
+					recipe.register();
+				}
+			}
+
 		}
 	}
 

@@ -1,11 +1,15 @@
 package com.icemetalpunk.infernaltech.registries;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.icemetalpunk.infernaltech.InfernalTech;
 import com.icemetalpunk.infernaltech.blocks.BasicBlock;
 import com.icemetalpunk.infernaltech.blocks.BlockHellfireSmeltery;
+import com.icemetalpunk.infernaltech.blocks.BlockSpiritGlass;
+import com.icemetalpunk.infernaltech.interfaces.ISmeltingOutput;
 import com.icemetalpunk.infernaltech.interfaces.ITileRegistrar;
+import com.icemetalpunk.infernaltech.util.SmeltingRecipe;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -27,6 +31,7 @@ public class BlockRegistry {
 				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_2", InfernalTech.tab, 2));
 		registry.put("hellfire_smeltery_tier_3",
 				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_3", InfernalTech.tab, 3));
+		registry.put("spirit_glass", new BlockSpiritGlass(InfernalTech.MODID, "spirit_glass", InfernalTech.tab));
 	}
 
 	public BlockRegistry() {
@@ -72,6 +77,15 @@ public class BlockRegistry {
 			Item itemBlock = block.getItemBlock();
 			if (itemBlock != null) {
 				reg.register(itemBlock);
+			}
+
+			// Register smelting recipes
+			if (block instanceof ISmeltingOutput) {
+				ISmeltingOutput smelt = (ISmeltingOutput) block;
+				List<SmeltingRecipe> recipes = smelt.getSmeltingRecipes();
+				for (SmeltingRecipe recipe : recipes) {
+					recipe.register();
+				}
 			}
 		}
 	}
