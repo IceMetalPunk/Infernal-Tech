@@ -1,5 +1,11 @@
 TODO:
 1. Pipes of some sort (hellfire smelteries with hot blocks under them are hard to automate from the bottom!)
+    --> Spirit Glass: smelted soul sand; players/mobs can walk through if wearing spirit armor
+    --> Spirit Armor: armor made of Spirit Glass; low durability, but allows movement through Spirit Glass
+    --> Crystal Spirit Armor: Diamond armor recipe with spirit armor in the empty spot; diamond-level protection with spirit glass passthru
+    --> Gazing Glass: Cup shape of spirit glass with ender eye in the top-middle; emits redstone when looked at
+    --> Greed Glass: Gazing Glass surrounded by blaze rods; can be configured to pull items from certain sides of nearby blocks wirelessly
+            using a Spirit Stick (Spirit Glass 3-diagonal stick). 2x2 internal inventory; can input and output items from all sides
 2. Soul Strands / Possession Cores   -> A Soul Distiller block: when a mob is killed near it, it adds to its Soul count, and after reaching 100%, it creates a Soul Strand of that mob's type
     --> 100% is determined by mob type; better mobs take more to distill
     -> Soul Strands can be crafted into Possession Core blocks
