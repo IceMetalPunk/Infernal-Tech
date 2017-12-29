@@ -28,17 +28,13 @@ public class BlockSpiritGlass extends BasicBlock implements ISmeltingOutput {
 		this.setSoundType(SoundType.GLASS).setHardness(0.3F);
 	}
 
-	/**
-	 * Used to determine ambient occlusion and culling when rebuilding chunks
-	 * for render
-	 */
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
+		return BlockRenderLayer.TRANSLUCENT;
 	}
 
 	public boolean isFullCube(IBlockState state) {
