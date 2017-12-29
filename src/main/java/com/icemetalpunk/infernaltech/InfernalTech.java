@@ -8,8 +8,6 @@ import com.icemetalpunk.infernaltech.registries.BlockRegistry;
 import com.icemetalpunk.infernaltech.registries.ItemRegistry;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -34,7 +32,7 @@ public class InfernalTech {
 		@Override
 		public ItemStack getTabIconItem() {
 			// TODO: Change item icon.
-			return new ItemStack(Item.getItemFromBlock(Blocks.NETHER_BRICK));
+			return new ItemStack(InfernalTech.blocks.get("hellfire_smeltery_tier_3"));
 		}
 
 	};

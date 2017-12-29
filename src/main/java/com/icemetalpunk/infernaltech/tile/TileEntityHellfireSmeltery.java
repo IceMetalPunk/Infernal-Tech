@@ -485,6 +485,7 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 		return new ContainerFurnace(playerInventory, this);
 	}
 
+	@Override
 	public int getField(int id) {
 		switch (id) {
 		case 0:
@@ -495,11 +496,14 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 			return this.cookTime;
 		case 3:
 			return this.totalCookTime;
+		case 4:
+			return this.tier;
 		default:
 			return 0;
 		}
 	}
 
+	@Override
 	public void setField(int id, int value) {
 		switch (id) {
 		case 0:
@@ -513,11 +517,14 @@ public class TileEntityHellfireSmeltery extends TileEntityLockable implements IT
 			break;
 		case 3:
 			this.totalCookTime = value;
+		case 4:
+			this.tier = value;
 		}
 	}
 
+	@Override
 	public int getFieldCount() {
-		return 4;
+		return 5;
 	}
 
 	public void clear() {
