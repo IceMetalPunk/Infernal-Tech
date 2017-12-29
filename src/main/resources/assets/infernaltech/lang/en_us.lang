@@ -8,6 +8,10 @@ item.infernaltech.hellfire_smeltery_tier_1.name=Basic Hellfire Smeltery
 item.infernaltech.hellfire_smeltery_tier_2.name=Adaptive Hellfire Smeltery
 item.infernaltech.hellfire_smeltery_tier_3.name=Radiant Hellfire Smeltery
 item.infernaltech.spirit_glass.name=Spirit Glass
+item.infernaltech.spirit_boots.name=Spirit Boots
+item.infernaltech.spirit_chestplate.name=Spirit Chestplate
+item.infernaltech.spirit_helmet.name=Spirit Helmet
+item.infernaltech.spirit_leggings.name=Spirit Leggings
 
 tile.infernaltech.hellfire_smeltery_tier_1.name=Basic Hellfire Smeltery
 tile.infernaltech.hellfire_smeltery_tier_2.name=Adaptive Hellfire Smeltery

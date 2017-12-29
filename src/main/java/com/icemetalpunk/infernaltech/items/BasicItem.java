@@ -12,7 +12,7 @@ import net.minecraftforge.client.model.ModelLoader;
 public class BasicItem extends Item implements IModeledObject {
 	public BasicItem(String mod, String name) {
 		super();
-		this.setRegistryName(new ResourceLocation(mod, name)).setUnlocalizedName(name);
+		this.setRegistryName(new ResourceLocation(mod, name)).setUnlocalizedName(mod + "." + name);
 	}
 
 	public BasicItem(String mod, String name, CreativeTabs tab) {
