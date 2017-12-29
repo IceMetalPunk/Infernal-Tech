@@ -3,7 +3,10 @@ package com.icemetalpunk.infernaltech.blocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.icemetalpunk.infernaltech.interfaces.ISmeltingOutput;
+import com.icemetalpunk.infernaltech.items.BasicArmor;
 import com.icemetalpunk.infernaltech.util.SmeltingRecipe;
 
 import net.minecraft.block.Block;
@@ -11,13 +14,18 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -43,6 +51,22 @@ public class BlockSpiritGlass extends BasicBlock implements ISmeltingOutput {
 
 	protected boolean canSilkHarvest() {
 		return true;
+	}
+
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+			List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+		if (entityIn instanceof EntityLivingBase) {
+			EntityLivingBase living = (EntityLivingBase) entityIn;
+			Iterable<ItemStack> armorList = living.getArmorInventoryList();
+			for (ItemStack stack : armorList) {
+				Item item = stack.getItem();
+				if (item instanceof ItemArmor && ((ItemArmor) item).getArmorMaterial() == BasicArmor.SPIRIT_MATERIAL) {
+					return;
+				}
+			}
+		}
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, state.getCollisionBoundingBox(worldIn, pos));
 	}
 
 	@SideOnly(Side.CLIENT)
