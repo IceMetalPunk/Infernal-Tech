@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:spirit_leggings",
+  "pattern": [
+    "SSS",
+	"S S",
+	"S S"
+  ],
+  "key": {
+	"S": {
+		"item": "infernaltech:spirit_glass",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:spirit_leggings",
+	"data": 0
+  }
+}

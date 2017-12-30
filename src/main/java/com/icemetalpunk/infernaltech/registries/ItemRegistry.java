@@ -33,6 +33,15 @@ public class ItemRegistry {
 				EntityEquipmentSlot.FEET, InfernalTech.tab));
 		armorRegistry.put("spirit_leggings", new BasicArmor(InfernalTech.MODID, "spirit_leggings",
 				BasicArmor.SPIRIT_MATERIAL, EntityEquipmentSlot.LEGS, InfernalTech.tab));
+
+		armorRegistry.put("crystal_chestplate", new BasicArmor(InfernalTech.MODID, "crystal_chestplate",
+				BasicArmor.CRYSTAL_SPIRIT, EntityEquipmentSlot.CHEST, InfernalTech.tab).setEnchanted(true));
+		armorRegistry.put("crystal_helmet", new BasicArmor(InfernalTech.MODID, "crystal_helmet",
+				BasicArmor.CRYSTAL_SPIRIT, EntityEquipmentSlot.HEAD, InfernalTech.tab).setEnchanted(true));
+		armorRegistry.put("crystal_boots", new BasicArmor(InfernalTech.MODID, "crystal_boots",
+				BasicArmor.CRYSTAL_SPIRIT, EntityEquipmentSlot.FEET, InfernalTech.tab).setEnchanted(true));
+		armorRegistry.put("crystal_leggings", new BasicArmor(InfernalTech.MODID, "crystal_leggings",
+				BasicArmor.CRYSTAL_SPIRIT, EntityEquipmentSlot.LEGS, InfernalTech.tab).setEnchanted(true));
 	}
 
 	public ItemRegistry() {

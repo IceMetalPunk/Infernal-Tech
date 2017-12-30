@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:crystal_helmet",
+  "pattern": [
+    "SSS",
+	"SHS"
+  ],
+  "key": {
+	"S": {
+		"item": "minecraft:diamond",
+		"data": 0
+	},
+	"H": {
+		"item": "infernaltech:spirit_helmet",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:crystal_helmet",
+	"data": 0
+  }
+}

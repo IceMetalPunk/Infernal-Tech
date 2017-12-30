@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:crystal_leggings",
+  "pattern": [
+    "SSS",
+	"SLS",
+	"S S"
+  ],
+  "key": {
+	"S": {
+		"item": "minecraft:diamond",
+		"data": 0
+	},
+	"L": {
+		"item": "infernaltech:spirit_leggings",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:crystal_leggings",
+	"data": 0
+  }
+}

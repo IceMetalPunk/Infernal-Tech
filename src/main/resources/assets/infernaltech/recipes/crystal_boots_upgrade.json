@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:crystal_boots",
+  "pattern": [
+    "SBS",
+	"S S"
+  ],
+  "key": {
+	"S": {
+		"item": "minecraft:diamond",
+		"data": 0
+	},
+	"B": {
+		"item": "infernaltech:spirit_boots",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:crystal_boots",
+	"data": 0
+  }
+}

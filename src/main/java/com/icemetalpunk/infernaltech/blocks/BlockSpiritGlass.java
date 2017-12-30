@@ -19,6 +19,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -61,8 +62,11 @@ public class BlockSpiritGlass extends BasicBlock implements ISmeltingOutput {
 			Iterable<ItemStack> armorList = living.getArmorInventoryList();
 			for (ItemStack stack : armorList) {
 				Item item = stack.getItem();
-				if (item instanceof ItemArmor && ((ItemArmor) item).getArmorMaterial() == BasicArmor.SPIRIT_MATERIAL) {
-					return;
+				if (item instanceof ItemArmor) {
+					ArmorMaterial mat = ((ItemArmor) item).getArmorMaterial();
+					if (mat == BasicArmor.CRYSTAL_SPIRIT || mat == BasicArmor.SPIRIT_MATERIAL) {
+						return;
+					}
 				}
 			}
 		}

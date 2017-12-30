@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:crystal_chestplate",
+  "pattern": [
+    "SCS",
+	"SSS",
+	"SSS"
+  ],
+  "key": {
+	"S": {
+		"item": "minecraft:diamond",
+		"data": 0
+	},
+	"C": {
+		"item": "infernaltech:spirit_chestplate",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:crystal_chestplate",
+	"data": 0
+  }
+}

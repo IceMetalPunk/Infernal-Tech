@@ -1,0 +1,35 @@
+{
+  "parent": "infernaltech:recipes/root",
+  "rewards": {
+    "recipes": [
+      "infernaltech:spirit_helmet",
+	  "infernaltech:crystal_helmet",
+	  "infernaltech:crystal_helmet_upgrade",
+	  "infernaltech:spirit_chestplate",
+	  "infernaltech:crystal_chestplate",
+	  "infernaltech:crystal_chestplate_upgrade",
+	  "infernaltech:spirit_boots",
+	  "infernaltech:crystal_boots",
+	  "infernaltech:crystal_boots_upgrade",
+	  "infernaltech:spirit_leggings",
+	  "infernaltech:crystal_leggings",
+	  "infernaltech:crystal_leggings_upgrade"
+    ]
+  },
+  "criteria": {
+    "has_spirit_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "infernaltech:spirit_glass",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+   ["has_spirit_glass"]
+  ]
+}

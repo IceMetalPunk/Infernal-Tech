@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group":"infernaltech:spirit_chestplate",
+  "pattern": [
+    "S S",
+	"SSS",
+	"SSS"
+  ],
+  "key": {
+	"S": {
+		"item": "infernaltech:spirit_glass",
+		"data": 0
+	}
+  },
+  "result": {
+    "item": "infernaltech:spirit_chestplate",
+	"data": 0
+  }
+}
