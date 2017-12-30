@@ -3,7 +3,12 @@ TODO:
     --> Gazing Glass: Cup shape of spirit glass with ender eye in the top-middle; emits redstone when looked at
     --> Greed Glass: Gazing Glass surrounded by blaze rods; can be configured to pull items from certain sides of nearby blocks wirelessly
             using a Spirit Stick (Spirit Glass 3-diagonal stick). 2x2 internal inventory; can input and output items from all sides
-2. Soul Strands / Possession Cores   -> A Soul Distiller block: when a mob is killed near it, it adds to its Soul count, and after reaching 100%, it creates a Soul Strand of that mob's type
+2. RF power gen: lava or something else?
+3. Blazing Heater, Blazing Scorcher, and Blazing Incinerator
+    --> 3 tiers of mob "grinder"
+    --> Uses power to increase the damage of magma blocks above them
+    --> Scorcher (tier 2) and above even burns mobs normally immune to fire damage
+4. Soul Strands / Possession Cores   -> A Soul Distiller block: when a mob is killed near it, it adds to its Soul count, and after reaching 100%, it creates a Soul Strand of that mob's type
     --> 100% is determined by mob type; better mobs take more to distill
     -> Soul Strands can be crafted into Possession Core blocks
     --> Possession Cores require Soul Strands of their type as fuel
@@ -11,8 +16,8 @@ TODO:
     --> Possessed mobs change their AI in ways that benefit the player, different for each mob
     ----> Note: make sure to store possession status in NBT and reset AI when constructing a possessed mob, for relogs to work!
     ----> Note 2: A visual indicator of possession would be nice :) 
-3. More infernal tech!
-4. Bloodthorn trees?
+5. More infernal tech!
+6. Bloodthorn trees?
     -> Natural, or grown only with special saplings?
     --> If saplings, how do you make them?
     -> Hurt on contact like cactus
