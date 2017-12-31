@@ -1,0 +1,24 @@
+{
+  "parent": "infernaltech:recipes/root",
+  "rewards": {
+    "recipes": [
+      "infernaltech:gazing_glass"
+    ]
+  },
+  "criteria": {
+    "has_spirit_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "infernaltech:spirit_glass",
+            "data": 0
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+   ["has_spirit_glass"]
+  ]
+}

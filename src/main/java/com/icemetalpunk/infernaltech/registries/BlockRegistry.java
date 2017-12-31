@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.icemetalpunk.infernaltech.InfernalTech;
 import com.icemetalpunk.infernaltech.blocks.BasicBlock;
+import com.icemetalpunk.infernaltech.blocks.BlockGazingGlass;
 import com.icemetalpunk.infernaltech.blocks.BlockHellfireSmeltery;
 import com.icemetalpunk.infernaltech.blocks.BlockSpiritGlass;
 import com.icemetalpunk.infernaltech.interfaces.ISmeltingOutput;
@@ -17,6 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -31,7 +33,9 @@ public class BlockRegistry {
 				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_2", InfernalTech.tab, 2));
 		registry.put("hellfire_smeltery_tier_3",
 				new BlockHellfireSmeltery(InfernalTech.MODID, "hellfire_smeltery_tier_3", InfernalTech.tab, 3));
+
 		registry.put("spirit_glass", new BlockSpiritGlass(InfernalTech.MODID, "spirit_glass", InfernalTech.tab));
+		registry.put("gazing_glass", new BlockGazingGlass(InfernalTech.MODID, "gazing_glass", InfernalTech.tab));
 	}
 
 	public BlockRegistry() {
@@ -67,6 +71,22 @@ public class BlockRegistry {
 	public void registerModels(ModelRegistryEvent ev) {
 		for (BasicBlock block : registry.values()) {
 			block.registerModel(ev);
+		}
+	}
+
+	public void registerTESRs() {
+		for (BasicBlock block : registry.values()) {
+			if (block instanceof ITileRegistrar) {
+				ITileRegistrar registrar = (ITileRegistrar) block;
+				if (registrar.getRendererClass() != null) {
+					try {
+						ClientRegistry.bindTileEntitySpecialRenderer(registrar.getTEClass(),
+								registrar.getRendererClass().newInstance());
+					} catch (InstantiationException | IllegalAccessException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 
