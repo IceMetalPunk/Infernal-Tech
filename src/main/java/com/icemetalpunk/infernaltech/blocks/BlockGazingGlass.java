@@ -39,12 +39,12 @@ public class BlockGazingGlass extends BasicBlock implements ITileRegistrar, ITil
 
 	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		/*
-		 * TileEntity te = blockAccess.getTileEntity(pos); if (!(te instanceof
-		 * TileEntityGazingGlass)) { return 0; } TileEntityGazingGlass gazing =
-		 * (TileEntityGazingGlass) te; return gazing.getPower();
-		 */
 		return (blockState.getValue(POWERED) ? 15 : 0);
+	}
+
+	@Override
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		return this.getWeakPower(blockState, blockAccess, pos, side);
 	}
 
 	@Override

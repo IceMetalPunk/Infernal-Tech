@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -63,7 +64,10 @@ public class TileEntityGazingGlass extends TileEntity implements ITickable {
 			vec3d1 = vec3d1.normalize();
 			double d1 = vec3d.dotProduct(vec3d1);
 			if (d1 > 1.0D - 0.025D / d0) {
-				return 15;
+				RayTraceResult trace = player.rayTrace(d0, 1.0f);
+				if (trace.getBlockPos().equals(this.pos)) {
+					return 15;
+				}
 			}
 		}
 		return 0;
