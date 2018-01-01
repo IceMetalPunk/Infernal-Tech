@@ -5,6 +5,7 @@ import java.util.List;
 import com.icemetalpunk.infernaltech.blocks.BlockGazingGlass;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -64,13 +65,21 @@ public class TileEntityGazingGlass extends TileEntity implements ITickable {
 			vec3d1 = vec3d1.normalize();
 			double d1 = vec3d.dotProduct(vec3d1);
 			if (d1 > 1.0D - 0.025D / d0) {
-				RayTraceResult trace = player.rayTrace(d0, 1.0f);
+				RayTraceResult trace = this.traceFromEntity(player, d0, 1.0f);
 				if (trace.getBlockPos().equals(this.pos)) {
 					return 15;
 				}
 			}
 		}
 		return 0;
+	}
+
+	public RayTraceResult traceFromEntity(EntityLivingBase ent, double blockReachDistance, float partialTicks) {
+		Vec3d vec3d = ent.getPositionEyes(partialTicks);
+		Vec3d vec3d1 = ent.getLook(partialTicks);
+		Vec3d vec3d2 = vec3d.addVector(vec3d1.x * blockReachDistance, vec3d1.y * blockReachDistance,
+				vec3d1.z * blockReachDistance);
+		return ent.world.rayTraceBlocks(vec3d, vec3d2, false, false, true);
 	}
 
 	@Override

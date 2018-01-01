@@ -31,7 +31,6 @@ public class InfernalTech {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			// TODO: Change item icon.
 			return new ItemStack(InfernalTech.blocks.get("hellfire_smeltery_tier_3"));
 		}
 
