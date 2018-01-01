@@ -42,6 +42,7 @@ public class BlockGazingGlass extends BasicBlock implements ITileRegistrar, ITil
 		return (blockState.getValue(POWERED) ? 15 : 0);
 	}
 
+	// FIXME: Power is only weak power for some reason...
 	@Override
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		return this.getWeakPower(blockState, blockAccess, pos, side);
