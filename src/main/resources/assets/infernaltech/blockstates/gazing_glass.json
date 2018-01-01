@@ -1,5 +1,6 @@
 {
     "variants": {
-        "normal": { "model": "infernaltech:gazing_glass" }
+        "powered=false": { "model": "infernaltech:gazing_glass" },
+		"powered=true": { "model": "infernaltech:gazing_glass" }
     }
 }
