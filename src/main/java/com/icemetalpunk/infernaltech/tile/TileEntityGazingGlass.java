@@ -8,6 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -41,6 +42,10 @@ public class TileEntityGazingGlass extends TileEntity implements ITickable {
 		if (this.power != tempPower) {
 			IBlockState state = this.world.getBlockState(this.pos);
 			this.world.setBlockState(this.pos, state.withProperty(BlockGazingGlass.POWERED, tempPower > 0));
+			for (EnumFacing facing : EnumFacing.VALUES) {
+				this.world.neighborChanged(this.pos.offset(facing), state.getBlock(), this.pos);
+				this.world.notifyNeighborsOfStateChange(this.pos.offset(facing), state.getBlock(), true);
+			}
 		}
 		this.power = tempPower;
 
