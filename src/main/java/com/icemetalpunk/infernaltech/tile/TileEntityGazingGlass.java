@@ -43,7 +43,6 @@ public class TileEntityGazingGlass extends TileEntity implements ITickable {
 			IBlockState state = this.world.getBlockState(this.pos);
 			this.world.setBlockState(this.pos, state.withProperty(BlockGazingGlass.POWERED, tempPower > 0));
 			for (EnumFacing facing : EnumFacing.VALUES) {
-				this.world.neighborChanged(this.pos.offset(facing), state.getBlock(), this.pos);
 				this.world.notifyNeighborsOfStateChange(this.pos.offset(facing), state.getBlock(), true);
 			}
 		}
